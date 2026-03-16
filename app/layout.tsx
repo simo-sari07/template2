@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Nunito } from "next/font/google";
 import "./globals.css";
+import Preloader from "@/components/Preloader";
 
 const cormorant = Cormorant_Garamond({
   variable: "--font-cormorant",
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body
         className={`${cormorant.variable} ${nunito.variable} font-body antialiased`}
       >
+        <Preloader />
         {children}
       </body>
     </html>

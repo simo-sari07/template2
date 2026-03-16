@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -17,13 +18,18 @@ const links = [
   { name: "HOME", href: "/" },
   { name: "ABOUT US", href: "/about" },
   { name: "SERVICES", href: "/services" },
-  { name: "PORTFOLIO", href: "/#portfolio" },
-  { name: "BLOG", href: "/#blog" },
   { name: "CONTACT US", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  // Pages with light backgrounds in their headers
+  const isLightPage = pathname === "/about" || pathname === "/services" || pathname === "/contact";
+  const textColor = isLightPage ? "text-[#0B1B3D]" : "text-white";
+  const hoverColor = isLightPage ? "hover:text-brand" : "hover:text-white/70";
+  const dotColor = isLightPage ? "bg-brand/20" : "bg-white/40";
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50 pt-4 px-4 sm:pt-6 sm:px-6 lg:px-8">
@@ -54,11 +60,11 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className="text-white font-bold text-[10px] sm:text-[11px] uppercase tracking-wider hover:text-white/70 transition-colors flex items-center gap-1.5"
+              className={`${textColor} font-bold text-[10px] sm:text-[11px] uppercase tracking-wider ${hoverColor} transition-colors flex items-center gap-1.5`}
             >
               {link.name}
               {i !== links.length - 1 && (
-                <span className="w-1 h-1 bg-white/40 rounded-full ml-6 2xl:ml-8" />
+                <span className={`w-1 h-1 ${dotColor} rounded-full ml-6 2xl:ml-8`} />
               )}
             </Link>
           ))}
