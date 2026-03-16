@@ -1,132 +1,166 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Calendar, CheckCircle2, Clock, ShieldCheck, Star } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
+
+const slides = [
+  {
+    id: 1,
+    image:
+      "https://xcare-demo.pbminfotech.com/demo10/wp-content/uploads/sites/17/2024/05/demo-10-slider-01.jpg",
+    tagline: "ADVICE ABOUT ORTHOTICS",
+    titleLine1: "Goodbye Pain,",
+    titleLine2: "Hello Freedom.",
+    subtitle:
+      "Care you can believe in, Compassionate Care, Advanced Medicine, Close to Home.",
+  },
+  {
+    id: 2,
+    image:
+      "https://xcare-demo.pbminfotech.com/demo10/wp-content/uploads/sites/17/2024/05/demo-10-slider-02.jpg",
+    tagline: "EXPERT MEDICAL STAFF",
+    titleLine1: "Your Health,",
+    titleLine2: "Our Priority.",
+    subtitle:
+      "We provide state-of-the-art medical equipment and highly skilled specialists.",
+  },
+  {
+    id: 3,
+    image:
+      "https://xcare-demo.pbminfotech.com/demo10/wp-content/uploads/sites/17/2024/05/demo-10-slider-03.jpg",
+    tagline: "MODERN FACILITIES",
+    titleLine1: "Compassionate",
+    titleLine2: "Care Daily.",
+    subtitle:
+      "A trusted name in healthcare emphasizing patient well-being and recovery.",
+  },
+];
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  const itemVariants: any = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 },
-    },
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[#FAFAFA] pt-16 pb-24 lg:pt-24 lg:pb-32">
-      {/* Decorative Background Circles */}
-      <div className="absolute top-0 right-0 -m-32 w-[600px] h-[600px] rounded-full bg-brand/5 blur-3xl" />
-      <div className="absolute bottom-0 left-0 -m-32 w-[400px] h-[400px] rounded-full bg-accent/5 blur-3xl" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Column Content */}
+    <section className="relative bg-white pt-4 px-4 sm:px-6 lg:px-8 pb-12">
+      <div className="relative w-full h-[80vh] min-h-[600px] lg:h-[85vh] rounded-b-[2.5rem] rounded-t-[2.5rem] overflow-hidden bg-brand shadow-2xl">
+        {/* Background Slider */}
+        <AnimatePresence mode="popLayout">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="max-w-2xl"
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.05 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.5, ease: "easeInOut" }}
+            className="absolute inset-0"
           >
-            <motion.span variants={itemVariants} className="inline-block text-accent font-semibold tracking-wider uppercase text-sm mb-4">
-              Cabinet Médical Chaleureux & Humain
-            </motion.span>
-            
-            <motion.h1 variants={itemVariants} className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-text-dark leading-tight mb-6">
-              Votre santé au cœur de nos{" "}
-              <span className="relative whitespace-nowrap">
-                <span className="relative z-10">préoccupations</span>
-                <span className="absolute left-0 bottom-2 w-full h-3 bg-brand/20 -z-10 -rotate-1"></span>
-              </span>
-            </motion.h1>
+            <Image
+              src={slides[currentSlide].image}
+              alt="Medical Hero"
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            {/* Subtle dark overlay to ensure white text pops */}
+            <div className="absolute inset-0 bg-brand/40" />
+            <div className="absolute inset-0 bg-gradient-to-r from-brand/90 via-brand/40 to-transparent w-full md:w-3/4" />
+          </motion.div>
+        </AnimatePresence>
 
-            <motion.p variants={itemVariants} className="text-lg text-text-mid mb-8 leading-relaxed">
-              Le Dr. Dupont, médecin généraliste, vous accueille dans un cadre moderne et bienveillant. 
-              Une écoute attentive pour un suivi médical personnalisé de qualité, pour vous et votre famille.
-            </motion.p>
-
-            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Link
-                href="#contact"
-                className="bg-brand text-white hover:bg-brand/90 px-8 py-4 rounded-full font-medium flex items-center justify-center gap-2 transition-transform hover:-translate-y-1 shadow-lg shadow-brand/20"
+        {/* Content Container */}
+        <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-24">
+          <div className="max-w-3xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentSlide}
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <Calendar className="w-5 h-5" />
-                <span>Prendre rendez-vous</span>
-              </Link>
-              <Link
-                href="#services"
-                className="bg-white text-text-dark hover:bg-gray-50 border border-gray-200 px-8 py-4 rounded-full font-medium flex items-center justify-center gap-2 transition-transform hover:-translate-y-1"
-              >
-                <span>Découvrir nos services</span>
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </motion.div>
-
-            {/* Trust Chips */}
-            <motion.div variants={itemVariants} className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-              {[
-                { icon: CheckCircle2, text: "Patients satisfaits" },
-                { icon: Clock, text: "RDV sous 48h" },
-                { icon: ShieldCheck, text: "Mutuelles acceptées" },
-                { icon: Star, text: "Cabinet moderne" },
-              ].map((chip, idx) => (
-                <div key={idx} className="flex flex-col gap-2 items-start p-3 bg-white rounded-xl shadow-sm border border-gray-100">
-                  <chip.icon className="w-6 h-6 text-accent" />
-                  <span className="text-xs font-semibold text-text-dark">{chip.text}</span>
+                {/* Tagline Pill */}
+                <div className="inline-flex items-center px-5 py-2 rounded-full border border-white/40 backdrop-blur-sm mb-6">
+                  <span className="text-white text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                    {slides[currentSlide].tagline}
+                  </span>
                 </div>
-              ))}
-            </motion.div>
-          </motion.div>
 
-          {/* Right Column Image */}
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative lg:h-[600px] flex justify-center lg:justify-end"
-          >
-            <div className="relative w-full max-w-md lg:max-w-none aspect-[4/5] lg:aspect-auto h-full rounded-[2rem] overflow-hidden shadow-2xl">
-              <Image
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=800&auto=format&fit=crop"
-                alt="Dr. Dupont en consultation"
-                fill
-                className="object-cover"
-                sizes="(max-w-768px) 100vw, 50vw"
-                priority
-              />
-              {/* Overlay gradient for warmth */}
-              <div className="absolute inset-0 bg-gradient-to-t from-brand/20 to-transparent mix-blend-multiply" />
-            </div>
+                {/* Massive Title */}
+                <h1 className="text-5xl md:text-7xl lg:text-[5.5rem] font-heading font-semibold text-white leading-[1.1] mb-6 tracking-tight">
+                  <span className="block">
+                    {slides[currentSlide].titleLine1}
+                  </span>
+                  <span className="block">
+                    {slides[currentSlide].titleLine2}
+                  </span>
+                </h1>
 
-            {/* Floating Element */}
-            <motion.div
-              animate={{ y: [0, -10, 0] }}
-              transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
-              className="absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl flex items-center gap-4 border border-gray-100"
-            >
-              <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center text-accent">
-                <Star className="w-6 h-6 fill-accent" />
-              </div>
-              <div>
-                <div className="font-bold text-xl text-text-dark">4.9/5</div>
-                <div className="text-sm text-text-mid font-medium">Avis vérifiés</div>
-              </div>
-            </motion.div>
-          </motion.div>
+                {/* Subtitle */}
+                <p className="text-white/90 text-[15px] md:text-lg mb-10 max-w-xl font-medium">
+                  {slides[currentSlide].subtitle}
+                </p>
 
+                {/* CTA Button */}
+                <Link
+                  href="#contact"
+                  className="bg-white text-brand hover:bg-gray-100 px-8 py-4 rounded-full font-bold text-xs uppercase tracking-wider inline-flex items-center gap-3 transition-transform hover:-translate-y-1"
+                >
+                  CONTACT US
+                  <ArrowUpRight className="w-4 h-4 text-brand" />
+                </Link>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* --- BOTTOM RIGHT CUTOUT FOR SLIDER DOTS --- */}
+        <div
+          className="absolute bottom-0 right-0 z-20 bg-white pt-10 pl-12 pb-10 pr-12 rounded-tl-[3rem]"
+          style={{ boxShadow: "-4px -4px 20px rgba(0,0,0,0.06)" }}
+        >
+          {/* Fake Inward Arc Cutout top-left */}
+          <div
+            className="absolute -top-10 right-0 w-10 h-10 bg-transparent pointer-events-none"
+            style={{
+              boxShadow: "20px 20px 0 0 white",
+              borderBottomRightRadius: "3rem",
+            }}
+          />
+          <div
+            className="absolute bottom-0 -left-10 w-10 h-10 bg-transparent pointer-events-none"
+            style={{
+              boxShadow: "20px 20px 0 0 white",
+              borderBottomRightRadius: "3rem",
+            }}
+          />
+
+          {/* Slider Dots Navigation */}
+          <div className="flex items-center gap-5">
+            {slides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className="flex items-center justify-center transition-all duration-300"
+              >
+                {currentSlide === index ? (
+                  <span className="w-8 h-8 rounded-full border-2 border-brand flex items-center justify-center">
+                    <span className="w-2.5 h-2.5 rounded-full bg-brand" />
+                  </span>
+                ) : (
+                  <span className="w-2 h-2 rounded-full bg-brand hover:scale-110 transition-transform" />
+                )}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </section>

@@ -16,7 +16,8 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: "Dr. Dupont — Médecin Généraliste | Paris",
-  description: "Prenez rendez-vous avec le Dr. Dupont, médecin généraliste à Paris. Des soins chaleureux et humains pour toute la famille. Consultations sur rendez-vous.",
+  description:
+    "Prenez rendez-vous avec le Dr. Dupont, médecin généraliste à Paris. Des soins chaleureux et humains pour toute la famille. Consultations sur rendez-vous.",
 };
 
 export default function RootLayout({
