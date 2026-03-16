@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { Facebook, Instagram, Linkedin, Twitter, MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
 
 const quickLinks = [
@@ -35,7 +38,13 @@ export default function Footer() {
     <footer className="bg-[#1B4332] text-white/70 overflow-hidden relative">
 
       {/* Top CTA Banner */}
-      <div className="relative overflow-hidden bg-brand">
+      <motion.div
+        initial={{ opacity: 0, scaleY: 0 }}
+        whileInView={{ opacity: 1, scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+        className="relative overflow-hidden bg-brand origin-top"
+      >
         {/* Decorative background elements */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           {/* Large faint circle top-right */}
@@ -98,14 +107,20 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Footer */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-white/10 pb-16">
 
           {/* Col 1: Brand */}
-          <div className="lg:col-span-1 space-y-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="lg:col-span-1 space-y-6"
+          >
             <Link href="#" className="inline-block">
               <Image
                 src="https://html.awaikenthemes.com/dentaire/images/logo.svg"
@@ -131,10 +146,15 @@ export default function Footer() {
                 </Link>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 2: Quick Links */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+          >
             <h4 className="text-white font-bold text-[15px] mb-6 relative pl-4 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-4 before:bg-brand before:rounded-full">
               Quick Links
             </h4>
@@ -151,10 +171,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Col 3: Services */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
             <h4 className="text-white font-bold text-[15px] mb-6 relative pl-4 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-4 before:bg-brand before:rounded-full">
               Our Services
             </h4>
@@ -171,10 +196,15 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* Col 4: Contact Info */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
             <h4 className="text-white font-bold text-[15px] mb-6 relative pl-4 before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-1 before:h-4 before:bg-brand before:rounded-full">
               Contact Info
             </h4>
@@ -193,19 +223,25 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
         </div>
 
         {/* Bottom Bar */}
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-[12.5px] text-white/30">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="flex flex-col md:flex-row justify-between items-center gap-4 text-[12.5px] text-white/30"
+        >
           <p>© {currentYear} Dentaire. All Rights Reserved.</p>
           <div className="flex gap-6">
             <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
             <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
             <Link href="#" className="hover:text-white transition-colors">Legal Notice</Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );

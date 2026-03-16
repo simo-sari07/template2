@@ -67,7 +67,13 @@ export default function Services() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-14"
+        >
           <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em] mb-3 block">
             + Our Services
           </span>
@@ -77,17 +83,17 @@ export default function Services() {
           <p className="text-gray-400 mt-4 text-[15px] max-w-md mx-auto">
             We are committed to sustainability and eco-friendly initiatives.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards grid */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((svc, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1 }}
               className="group relative rounded-[1.5rem] p-7 flex flex-col bg-white shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:bg-[#1B4332] hover:shadow-[0_20px_50px_rgba(27,67,50,0.3)] hover:-translate-y-2 transition-all duration-500 ease-in-out cursor-pointer overflow-hidden before:absolute before:inset-0 before:bg-[#1B4332] before:scale-y-0 before:origin-bottom before:transition-transform before:duration-500 before:ease-in-out before:rounded-[1.5rem] before:-z-0 hover:before:scale-y-100"
             >
               {/* Number watermark */}
@@ -131,7 +137,13 @@ export default function Services() {
         </div>
 
         {/* Bottom CTA */}
-        <div className="text-center mt-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="text-center mt-14"
+        >
           <p className="text-gray-400 text-[14px] mb-6 max-w-md mx-auto">
             We believe in using the latest technology and techniques to ensure the best outcomes for our patients.
           </p>
@@ -146,7 +158,7 @@ export default function Services() {
               <ArrowUpRight className="w-4 h-4" />
             </span>
           </motion.a>
-        </div>
+        </motion.div>
 
       </div>
     </section>

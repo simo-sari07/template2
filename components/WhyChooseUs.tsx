@@ -83,7 +83,13 @@ export default function WhyChooseUs() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
           <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em] mb-3 block">
             + Why Choose Us
           </span>
@@ -93,7 +99,7 @@ export default function WhyChooseUs() {
           <p className="text-gray-400 mt-4 text-[15px] max-w-md mx-auto">
             We are committed to sustainability and eco-friendly initiatives.
           </p>
-        </div>
+        </motion.div>
 
         {/* 3-column layout: left items | center image | right items */}
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-4 items-center">

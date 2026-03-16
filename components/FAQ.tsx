@@ -48,7 +48,13 @@ export default function FAQ() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ── Header ── */}
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-14"
+        >
           <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em] mb-3 block">
             + FAQ
           </span>
@@ -59,7 +65,7 @@ export default function FAQ() {
           <p className="text-gray-400 mt-4 text-[15px] max-w-md mx-auto">
             Find practical information about our clinic, services, and consultation procedures.
           </p>
-        </div>
+        </motion.div>
 
         {/* ── Two-column layout ── */}
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-start">
@@ -134,8 +140,12 @@ export default function FAQ() {
             {faqs.map((faq, idx) => {
               const isOpen = openIndex === idx;
               return (
-                <div
+                <motion.div
                   key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: idx * 0.1 }}
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isOpen
                       ? "border-brand/30 bg-brand/5 shadow-[0_4px_20px_rgba(45,106,79,0.08)]"
@@ -183,7 +193,7 @@ export default function FAQ() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </motion.div>

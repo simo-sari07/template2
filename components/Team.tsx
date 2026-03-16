@@ -68,7 +68,13 @@ export default function Team() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Header */}
-        <div className="text-center mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-14"
+        >
           <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em] mb-3 block">
             + Our Team
           </span>
@@ -79,7 +85,7 @@ export default function Team() {
           <p className="text-gray-400 mt-4 text-[15px] max-w-md mx-auto">
             We are committed to sustainability and eco-friendly initiatives.
           </p>
-        </div>
+        </motion.div>
 
         {/* Cards */}
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">

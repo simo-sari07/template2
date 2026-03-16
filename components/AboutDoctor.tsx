@@ -164,13 +164,20 @@ export default function AboutDoctor() {
 
             {/* Feature checklist — 2 columns */}
             <div className="grid grid-cols-2 gap-x-6 gap-y-4 mb-12">
-              {features.map((feat) => (
-                <div key={feat} className="flex items-center gap-2.5">
+              {features.map((feat, idx) => (
+                <motion.div
+                  key={feat}
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.2 + idx * 0.1 }}
+                  className="flex items-center gap-2.5"
+                >
                   <CheckCircle2 className="w-5 h-5 text-brand flex-shrink-0" />
                   <span className="text-[#0B1B3D] font-semibold text-[13.5px]">
                     {feat}
                   </span>
-                </div>
+                </motion.div>
               ))}
             </div>
 
@@ -179,6 +186,10 @@ export default function AboutDoctor() {
               href="#"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.6 }}
               className="inline-flex items-center gap-3 bg-brand text-white pl-7 pr-2 py-2 rounded-full font-bold text-[12px] uppercase tracking-[0.1em] hover:bg-brand/90 transition-all shadow-[0_10px_28px_rgba(45,106,79,0.28)] group"
             >
               Read More About Us
@@ -211,7 +222,13 @@ export default function AboutDoctor() {
           -webkit-text-stroke: 0px transparent;
         }
       `}</style>
-      <div className="relative pt-12 pb-8 overflow-hidden border-t border-gray-100">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1 }}
+        className="relative pt-12 pb-8 overflow-hidden border-t border-gray-100"
+      >
         <div className="flex whitespace-nowrap cursor-default select-none">
           <div className="marquee-track items-center">
             {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map(
@@ -228,7 +245,7 @@ export default function AboutDoctor() {
             )}
           </div>
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
