@@ -14,11 +14,12 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 
 const links = [
-  { name: "HOME", href: "#" },
-  { name: "SERVICES", href: "#services" },
-  { name: "PORTFOLIO", href: "#portfolio" },
-  { name: "BLOG", href: "#blog" },
-  { name: "CONTACT US", href: "#contact" },
+  { name: "HOME", href: "/" },
+  { name: "ABOUT US", href: "/about" },
+  { name: "SERVICES", href: "/services" },
+  { name: "PORTFOLIO", href: "/#portfolio" },
+  { name: "BLOG", href: "/#blog" },
+  { name: "CONTACT US", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -31,14 +32,14 @@ export default function Navbar() {
         It sits over the Hero which has rounded corners.
         We match the exact reference layout: Left Logo Box (white), center links (white text), right actions.
       */}
-      <div className="flex justify-between items-start">
-        {/* Left: Logo Box with Cutout */}
-        <div className="relative z-20 -mt-4 -ml-4 sm:-mt-6 sm:-ml-6 lg:-ml-8 bg-white pt-5 pl-4 sm:pt-6 sm:pl-6 lg:pl-10 pr-10 pb-6 rounded-br-[2.5rem]">
+      <div className="flex justify-between items-center px-4 sm:px-6 lg:px-8">
+        {/* Left: Logo Box with Cutout - keeping it at the top */}
+        <div className="relative z-20 -mt-8 -ml-8 lg:-ml-16 bg-white pt-8 pl-8 sm:pt-10 sm:pl-10 lg:pl-16 pr-12 pb-8 rounded-br-[2.5rem] self-start shadow-sm">
           <Link href="/" className="flex items-center">
             <div className="relative w-32 h-10">
               <Image
-                src="https://xcare-demo.pbminfotech.com/demo10/wp-content/uploads/sites/17/2024/05/logo.svg"
-                alt="Xcare Logo"
+                src="https://html.awaikenthemes.com/dentaire/images/logo.svg"
+                alt=" Logo"
                 fill
                 className="object-contain"
                 priority
@@ -48,7 +49,7 @@ export default function Navbar() {
         </div>
 
         {/* Center: Desktop Links */}
-        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8 pt-4">
+        <nav className="hidden xl:flex items-center gap-6 2xl:gap-8">
           {links.map((link, i) => (
             <Link
               key={link.name}
@@ -64,7 +65,7 @@ export default function Navbar() {
         </nav>
 
         {/* Right: Actions */}
-        <div className="hidden lg:flex items-center gap-3 pt-2">
+        <div className="hidden lg:flex items-center gap-4">
           {/* Phone Pill */}
           <Link
             href="tel:+1212255511"
@@ -78,10 +79,10 @@ export default function Navbar() {
 
           <Link
             href="#appointment"
-            className="ml-2 bg-white text-brand hover:bg-gray-50 px-8 py-5 rounded-full font-bold text-[11px] uppercase tracking-wider inline-flex items-center gap-2 transition-all group shadow-sm"
+            className="ml-2 bg-white text-brand border-2 border-transparent hover:border-brand hover:bg-brand hover:text-white px-8 py-3.5 rounded-full font-bold text-[11px] uppercase tracking-wider inline-flex items-center gap-2 transition-all duration-300 group shadow-sm"
           >
             MAKE AN APPOINTMENT
-            <ArrowUpRight className="w-3.5 h-3.5 text-brand transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            <ArrowUpRight className="w-3.5 h-3.5 transform group-hover:rotate-45 transition-transform duration-300" />
           </Link>
         </div>
 

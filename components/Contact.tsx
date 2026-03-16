@@ -1,162 +1,110 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { MapPin, Phone, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, ArrowUpRight } from "lucide-react";
+
+const infos = [
+  {
+    icon: MapPin,
+    text: "15 Rue de la Paix, 75002 Paris, France",
+  },
+  {
+    icon: Phone,
+    text: "+(123) 698-5245",
+  },
+  {
+    icon: Mail,
+    text: "info@domain.com",
+  },
+  {
+    icon: Clock,
+    text: "Mon to Sat 9:00AM to 9:00PM",
+  },
+];
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 bg-[#FAFAFA]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-accent font-semibold tracking-wider uppercase text-sm mb-2 block">
-            Nous Trouver
-          </span>
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-text-dark mb-4">
-            Contact & Accès
-          </h2>
-          <p className="text-text-mid">
-            Prenez rendez-vous en ligne, par téléphone, ou venez nous rencontrer directement au cabinet.
-          </p>
-        </div>
+    <section id="contact" className="py-24 bg-white overflow-hidden relative">
+      {/* Subtle blob */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-brand/5 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          
-          {/* Left: Contact Form */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* ── LEFT: Map ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-3xl p-8 shadow-sm border border-gray-100"
+            transition={{ duration: 0.7 }}
+            className="w-full h-[480px] md:h-[540px] rounded-[1.75rem] overflow-hidden shadow-[0_20px_60px_rgba(45,106,79,0.12)] border border-gray-100"
           >
-            <h3 className="text-2xl font-bold font-heading text-text-dark mb-6">
-              Envoyer un message
-            </h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium text-text-dark">Nom complet</label>
-                  <input
-                    type="text"
-                    id="name"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-colors"
-                    placeholder="Jean Dupont"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="phone" className="text-sm font-medium text-text-dark">Téléphone</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-colors"
-                    placeholder="06 12 34 56 78"
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium text-text-dark">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-colors"
-                  placeholder="jean.dupont@email.com"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium text-text-dark">Message</label>
-                <textarea
-                  id="message"
-                  rows={4}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-brand/20 focus:border-brand transition-colors resize-none"
-                  placeholder="Comment pouvons-nous vous aider ?"
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                className="w-full bg-brand hover:bg-brand/90 text-white font-medium py-4 rounded-xl flex items-center justify-center gap-2 transition-transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Envoyer le message</span>
-                <Send className="w-4 h-4" />
-              </button>
-            </form>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937604!2d2.292292615509614!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1683267568529!5m2!1sfr!2sfr"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen={false}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </motion.div>
 
-          {/* Right: Info & Map */}
+          {/* ── RIGHT: Content ── */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: 24 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="flex flex-col gap-8"
+            transition={{ duration: 0.7 }}
+            className="flex flex-col"
           >
-            <div className="grid sm:grid-cols-2 gap-8">
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center text-brand">
-                  <MapPin className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-text-dark mb-1">Adresse</h4>
-                  <p className="text-text-mid leading-relaxed">
-                    15 Rue de la Paix<br />
-                    75002 Paris, France
-                  </p>
-                </div>
-              </div>
+            {/* Label */}
+            <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em] mb-5 block">
+              + Contact Now
+            </span>
 
-              <div className="flex gap-4">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center text-brand">
-                  <Phone className="w-5 h-5" />
-                </div>
-                <div>
-                  <h4 className="font-bold text-text-dark mb-1">Téléphone</h4>
-                  <p className="text-text-mid mb-2">01 23 45 67 89</p>
-                  <p className="text-sm text-text-mid font-medium">Urgences : 15</p>
-                </div>
-              </div>
+            {/* Heading */}
+            <h2 className="text-4xl md:text-[2.8rem] lg:text-[3.2rem] font-bold text-[#0B1B3D] leading-[1.15] tracking-tight mb-10">
+              Get Free{" "}
+              <span className="text-brand">Professional</span>
+              <br />
+              Consultation
+            </h2>
 
-              <div className="flex gap-4 sm:col-span-2">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand/5 rounded-full flex items-center justify-center text-brand">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div className="w-full">
-                  <h4 className="font-bold text-text-dark mb-3">Horaires d'ouverture</h4>
-                  <div className="space-y-2 text-text-mid text-sm">
-                    <div className="flex justify-between border-b border-gray-100 pb-2">
-                      <span>Lundi - Vendredi</span>
-                      <span className="font-medium text-text-dark">08:30 - 19:30</span>
-                    </div>
-                    <div className="flex justify-between border-b border-gray-100 pb-2">
-                      <span>Samedi</span>
-                      <span className="font-medium text-text-dark">09:00 - 12:30</span>
-                    </div>
-                    <div className="flex justify-between pt-1">
-                      <span>Dimanche & Jours fériés</span>
-                      <span className="font-medium text-accent">Fermé</span>
-                    </div>
+            {/* Info list */}
+            <ul className="space-y-6 mb-12">
+              {infos.map(({ icon: Icon, text }, idx) => (
+                <motion.li
+                  key={idx}
+                  initial={{ opacity: 0, x: 16 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: idx * 0.08 }}
+                  className="flex items-center gap-4"
+                >
+                  {/* Icon circle — outline style matching reference */}
+                  <div className="flex-shrink-0 w-11 h-11 rounded-full border-2 border-brand/30 flex items-center justify-center text-brand">
+                    <Icon className="w-4.5 h-4.5" strokeWidth={1.8} />
                   </div>
-                </div>
-              </div>
-            </div>
+                  <span className="text-gray-500 text-[15px] leading-snug">{text}</span>
+                </motion.li>
+              ))}
+            </ul>
 
-            {/* Google Maps Embed */}
-            <div className="w-full h-64 rounded-3xl overflow-hidden shadow-sm border border-gray-100">
-             <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9916256937604!2d2.292292615509614!3d48.85837007928746!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e66e2964e34e2d%3A0x8ddca9ee380ef7e0!2sTour%20Eiffel!5e0!3m2!1sfr!2sfr!4v1683267568529!5m2!1sfr!2sfr"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen={false}
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              ></iframe>
-            </div>
+            {/* CTA Button */}
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-3 bg-brand text-white pl-7 pr-2 py-2 rounded-full font-bold text-[12px] uppercase tracking-[0.1em] hover:bg-brand/90 transition-all shadow-[0_10px_28px_rgba(45,106,79,0.28)] self-start group"
+            >
+              Make An Appointment
+              <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:rotate-45">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </motion.a>
           </motion.div>
+
         </div>
       </div>
     </section>

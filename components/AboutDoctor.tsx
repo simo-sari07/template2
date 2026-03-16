@@ -2,45 +2,14 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { Plus, ArrowRight } from "lucide-react";
+import { ArrowUpRight, CheckCircle2 } from "lucide-react";
 
-// Using an SVG component for the exact icon in the reference
-function TestAdminIcon() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  );
-}
-
-function HeartCareIcon() {
-  return (
-    <svg
-      width="28"
-      height="28"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
-    </svg>
-  );
-}
+const features = [
+  "Experienced Team",
+  "Comprehensive Services",
+  "State-Of-The-Art Technology",
+  "Emergency Dental Services",
+];
 
 const tickerItems = [
   "Surgery",
@@ -54,168 +23,210 @@ const tickerItems = [
 
 export default function AboutDoctor() {
   return (
-    <section id="about" className="py-24 bg-[#F4F7F9] overflow-hidden relative">
+    <section
+      id="about"
+      className="py-24 bg-white overflow-hidden relative"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-24">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left: EXACT Split Image Design (Based on new reference) */}
-          <div className="relative flex h-[500px] md:h-[650px] w-full max-w-lg mx-auto lg:mx-0">
-            {/* Left Image Panel */}
+        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+
+          {/* ─── LEFT: Two-image stacked layout with circular badge ─── */}
+          <div className="relative h-[560px] md:h-[620px] w-full max-w-[520px] mx-auto lg:mx-0">
+
+            {/* Decorative sparkle (top-left) */}
+            <div className="absolute top-8 left-4 text-brand opacity-40 z-0 select-none pointer-events-none">
+              <svg width="28" height="28" viewBox="0 0 28 28" fill="currentColor">
+                <path d="M14 0 L15.5 12.5 L28 14 L15.5 15.5 L14 28 L12.5 15.5 L0 14 L12.5 12.5 Z" />
+              </svg>
+            </div>
+            {/* Decorative sparkle (bottom-left smaller) */}
+            <div className="absolute bottom-20 left-8 text-brand opacity-25 z-0 select-none pointer-events-none">
+              <svg width="14" height="14" viewBox="0 0 28 28" fill="currentColor">
+                <path d="M14 0 L15.5 12.5 L28 14 L15.5 15.5 L14 28 L12.5 15.5 L0 14 L12.5 12.5 Z" />
+              </svg>
+            </div>
+
+            {/* Top image — slightly larger, top-left anchored */}
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: -24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="absolute left-0 bottom-0 w-[45%] h-[85%] rounded-[2rem] overflow-hidden rounded-br-none"
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="absolute top-0 left-0 w-[62%] h-[58%] rounded-[1.75rem] overflow-hidden shadow-[0_20px_60px_rgba(45,106,79,0.15)] z-10"
             >
               <Image
-                src="https://xcare-demo.pbminfotech.com/demo4/wp-content/uploads/sites/9/2024/03/about-img.jpg"
-                alt="Medical Professionals"
+                src="https://html.awaikenthemes.com/dentaire/images/about-us-img-1.jpg"
+                alt="Dental treatment"
                 fill
-                className="object-cover object-[20%_center]"
-                sizes="(max-w-768px) 50vw, 25vw"
+                className="object-cover"
+                sizes="(max-width: 768px) 60vw, 30vw"
                 priority
               />
-              {/* Bottom Right Inward Arc Cutout */}
-              <div className="absolute -bottom-0 -right-0 w-16 h-16 bg-[#F4F7F9] rounded-tl-[2rem] translate-x-full translate-y-full" />
             </motion.div>
 
-            {/* Gap logic via absolute positioning offsets */}
-
-            {/* Right Image Panel */}
+            {/* Bottom image — slightly smaller, bottom-right anchored */}
             <motion.div
-              initial={{ opacity: 0, y: -30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="absolute right-0 top-0 w-[50%] h-[85%] rounded-[2rem] overflow-hidden rounded-tl-none"
+              transition={{ duration: 0.7, delay: 0.15, ease: "easeOut" }}
+              className="absolute bottom-0 right-0 w-[65%] h-[58%] rounded-[1.75rem] overflow-hidden shadow-[0_20px_60px_rgba(45,106,79,0.12)] z-10"
             >
               <Image
-                src="https://xcare-demo.pbminfotech.com/demo4/wp-content/uploads/sites/9/2024/03/about-img.jpg"
-                alt="Medical Professionals"
+                src="https://html.awaikenthemes.com/dentaire/images/about-us-img-2.jpg"
+                alt="Dental clinic"
                 fill
-                className="object-cover object-[80%_center]"
-                sizes="(max-w-768px) 50vw, 25vw"
+                className="object-cover"
+                sizes="(max-width: 768px) 65vw, 33vw"
                 priority
               />
-              {/* Top Left Inward Arc Cutout */}
-              <div className="absolute -top-0 -left-0 w-16 h-16 bg-[#F4F7F9] rounded-br-[2rem] -translate-x-full -translate-y-full" />
             </motion.div>
 
-            {/* Background Shape to fake the continuous curve cutouts */}
-            <div className="absolute left-[45%] bottom-0 w-[5%] h-16 bg-[#F4F7F9] z-10 rounded-tl-[1.5rem]" />
-            <div className="absolute right-[50%] top-0 w-[5%] h-16 bg-[#F4F7F9] z-10 rounded-br-[1.5rem]" />
-            <div className="absolute left-[45%] top-0 bottom-0 w-[5%] bg-[#F4F7F9] z-0" />
+            {/* Circular badge — sits at the overlap junction */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.35, ease: "backOut" }}
+              className="absolute top-[38%] left-[50%] -translate-x-1/2 -translate-y-1/2 z-20 w-[130px] h-[130px]"
+            >
+              {/* Outer rotating text ring */}
+              <svg
+                viewBox="0 0 130 130"
+                className="w-full h-full animate-[spin_18s_linear_infinite]"
+              >
+                <defs>
+                  <path
+                    id="circle-text-path"
+                    d="M 65,65 m -47,0 a 47,47 0 1,1 94,0 a 47,47 0 1,1 -94,0"
+                  />
+                </defs>
+                <circle cx="65" cy="65" r="60" fill="#2d6a4f" />
+                <text
+                  fontSize="9.5"
+                  fill="white"
+                  fontFamily="sans-serif"
+                  letterSpacing="2.8"
+                  fontWeight="600"
+                >
+                  <textPath href="#circle-text-path">
+                    15+ YEARS OF EXPERIENCE • 15+ YEARS OF EXPERIENCE •
+                  </textPath>
+                </text>
+              </svg>
+              {/* Inner half-circle icon */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-[52px] h-[52px] rounded-full bg-white flex items-center justify-center shadow-md">
+                  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#2d6a4f" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+                  </svg>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Decorative plus cross */}
+            <div className="absolute top-[22%] right-[28%] text-brand/30 z-0 select-none pointer-events-none">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor">
+                <rect x="10" y="0" width="4" height="24" rx="2"/>
+                <rect x="0" y="10" width="24" height="4" rx="2"/>
+              </svg>
+            </div>
           </div>
 
-          {/* Right: Content */}
+          {/* ─── RIGHT: Content ─── */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 32 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
           >
-            <div className="inline-flex flex-col mb-4">
-              <div className="inline-flex items-center px-4 py-1.5 bg-white rounded-full shadow-[0_2px_8px_rgba(0,0,0,0.04)] mb-2 mt-4 self-start">
-                <span className="text-brand font-bold text-[10px] uppercase tracking-[0.15em]">
-                  ABOUT US
-                </span>
-              </div>
+            {/* Label */}
+            <div className="inline-flex items-center gap-2 mb-5">
+              <span className="text-brand font-bold text-[11px] uppercase tracking-[0.18em]">
+                + About Us
+              </span>
             </div>
 
-            <h2 className="text-4xl md:text-[3.5rem] lg:text-[4rem] font-heading font-medium text-text-dark mb-6 leading-[1.1] tracking-tight">
-              The Heart and Science <br className="hidden md:block" />
-              of Medic Test
+            {/* Heading */}
+            <h2 className="text-4xl md:text-[2.8rem] lg:text-[3.2rem] font-bold text-[#0B1B3D] mb-5 leading-[1.15] tracking-tight">
+              Your Journey{" "}
+              <span className="text-brand">to a Healthier</span>
+              <br />
+              Smile Begins Here
             </h2>
 
-            <p className="text-text-mid mb-12 text-[15px] leading-[1.8] max-w-xl">
-              There are many variations of passages of Lorem Ipsum available,
-              but the maj ority have suffered alteration in some form, by
-              injected humour, or randomised words which don't look even.
+            {/* Description */}
+            <p className="text-gray-500 mb-10 text-[15px] leading-[1.85] max-w-lg">
+              The goal of our clinic is to provide friendly, caring dentistry and
+              the highest level of general, cosmetic, and specialist dental
+              treatments. With dental practices throughout the world.
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-x-8 gap-y-10 mb-12">
-              <div className="flex flex-col gap-4">
-                <div className="w-16 h-16 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center text-brand">
-                  <TestAdminIcon />
+            {/* Feature checklist — 2 columns */}
+            <div className="grid grid-cols-2 gap-x-6 gap-y-4 mb-12">
+              {features.map((feat) => (
+                <div key={feat} className="flex items-center gap-2.5">
+                  <CheckCircle2 className="w-5 h-5 text-brand flex-shrink-0" />
+                  <span className="text-[#0B1B3D] font-semibold text-[13.5px]">
+                    {feat}
+                  </span>
                 </div>
-                <div>
-                  <h4 className="text-[17px] font-bold text-text-dark mb-2">
-                    Professional Experts
-                  </h4>
-                  <p className="text-text-mid text-[13px] leading-[1.6]">
-                    We prioritize each patient's unique
-                    <br />
-                    needs and preferences.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-col gap-4">
-                <div className="w-16 h-16 rounded-full bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] flex items-center justify-center text-brand">
-                  <HeartCareIcon />
-                </div>
-                <div>
-                  <h4 className="text-[17px] font-bold text-text-dark mb-2">
-                    Patient-centered Care
-                  </h4>
-                  <p className="text-text-mid text-[13px] leading-[1.6]">
-                    We prioritize each patient's unique
-                    <br />
-                    needs and preferences.
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-2 bg-brand text-white px-8 py-4 rounded-full font-bold text-[11px] uppercase tracking-[0.1em] hover:bg-brand/90 transition-all shadow-[0_8px_20px_rgba(45,106,79,0.25)] mt-2 group"
+            {/* CTA Button */}
+            <motion.a
+              href="#"
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="inline-flex items-center gap-3 bg-brand text-white pl-7 pr-2 py-2 rounded-full font-bold text-[12px] uppercase tracking-[0.1em] hover:bg-brand/90 transition-all shadow-[0_10px_28px_rgba(45,106,79,0.28)] group"
             >
-              KNOW MORE
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </motion.button>
+              Read More About Us
+              <span className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center transition-transform group-hover:rotate-45">
+                <ArrowUpRight className="w-4 h-4" />
+              </span>
+            </motion.a>
           </motion.div>
         </div>
       </div>
 
-      {/* Ticker Section - EXACT Match from new image */}
-      <div className="relative pt-12 pb-8 overflow-hidden bg-[#F4F7F9]">
-        <div className="flex whitespace-nowrap">
-          <motion.div
-            animate={{ x: ["0%", "-50%"] }}
-            transition={{
-              duration:20000 /* Incredibly slow speed to match the request */,
-              repeat: Infinity,
-              ease: "linear",
-            }}
-            className="flex items-center w-max"
-          >
-            {[
-              ...tickerItems,
-              ...tickerItems,
-              ...tickerItems,
-              ...tickerItems,
-              ...tickerItems,
-              ...tickerItems,
-            ].map((item, idx) => (
-              <div key={idx} className="flex items-center">
-                <span
-                  className="text-5xl md:text-6xl lg:text-[5rem] font-heading font-normal capitalize"
-                  style={{
-                    WebkitTextStroke: "1.5px #0B1B3D", // Dark navy outline matching the screenshot perfectly
-                    color: "transparent",
-                  }}
-                >
-                  {item}
-                </span>
-                <div className="px-8 md:px-12 lg:px-16">
-                  {/* Heavy dark Plus sign acting as the separator */}
-                  <div className="text-[#0B1B3D] flex items-center justify-center font-black text-6xl px-4 font-sans">
+      {/* ─── Ticker / Marquee ─── */}
+      <style>{`
+        @keyframes marquee {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .marquee-track {
+          display: flex;
+          width: max-content;
+          animation: marquee 60s linear infinite;
+        }
+        .marquee-word {
+          -webkit-text-stroke: 1.5px #0B1B3D;
+          color: transparent;
+          transition: color 0.25s ease, -webkit-text-stroke 0.25s ease;
+        }
+        .marquee-word:hover {
+          color: #0B1B3D;
+          -webkit-text-stroke: 0px transparent;
+        }
+      `}</style>
+      <div className="relative pt-12 pb-8 overflow-hidden border-t border-gray-100">
+        <div className="flex whitespace-nowrap cursor-default select-none">
+          <div className="marquee-track items-center">
+            {[...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems, ...tickerItems].map(
+              (item, idx) => (
+                <div key={idx} className="flex items-center">
+                  <span className="marquee-word text-5xl md:text-6xl lg:text-[5rem] font-bold capitalize cursor-default">
+                    {item}
+                  </span>
+                  <div className="px-8 md:px-12 lg:px-16 text-[#0B1B3D] font-black text-6xl">
                     +
                   </div>
                 </div>
-              </div>
-            ))}
-          </motion.div>
+              )
+            )}
+          </div>
         </div>
       </div>
     </section>

@@ -1,10 +1,8 @@
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
-import TrustBar from "@/components/TrustBar";
 import Services from "@/components/Services";
 import AboutDoctor from "@/components/AboutDoctor";
-import ProcessSteps from "@/components/ProcessSteps";
 import Team from "@/components/Team";
 import Testimonials from "@/components/Testimonials";
 import FAQ from "@/components/FAQ";
@@ -62,10 +60,8 @@ export default function Home() {
         <main className="flex-grow relative">
           <Navbar />
           <Hero />
-          <TrustBar />
           <Services />
           <AboutDoctor />
-          <ProcessSteps />
           <Team />
           <Testimonials />
           <FAQ />
